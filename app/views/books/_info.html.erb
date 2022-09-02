@@ -1,0 +1,36 @@
+<h2>User info</h2>
+      <table class='table'>
+  <tr>
+    <% if user.image.attached? %>
+    <%= image_tag user.image, :size =>"100×100" %>
+    <% else %>
+    <%= image_tag 'default-image', :size =>"100×100" %>
+    <% end %>
+  </tr>
+  <tr>
+	  <th>name</th>
+	  <th><%= user.name %></th>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+	  <th><%= user.introduction %></th>
+  </tr>
+</table>
+
+<%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
+<i class="fas fa-user-cog"></i>
+<% end %>
+
+
+    <h2>New book</h2>
+    <%= form_with model: book, local: true do |f| %>
+
+    <label>Title</label><br>
+    <%= f.text_field :title %><br>
+
+    <label>Opinion</label><br>
+    <%= f.text_area :body %><br>
+
+    <%= f.submit 'Create Book', class: "btn btn-success" %>
+
+    <% end %>

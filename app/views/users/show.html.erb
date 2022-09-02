@@ -1,0 +1,42 @@
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+    <%= render 'books/info', user: @user, book: @book %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+
+      <h2>Books</h2>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <% @books.each do |book| %>
+        <tbody>
+          <tr>
+            <td>
+              <% if @user.image.attached? %>
+              <%= image_tag @user.image, :size =>"80×80" %>
+              <% else %>
+              <%= image_tag 'default-image', :size =>"80x80" %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to book.title, book_path(book.id) %>
+            </td>
+            <td>
+              <%= book.body %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
