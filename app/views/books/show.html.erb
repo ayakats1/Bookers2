@@ -22,25 +22,24 @@
         <tbody>
           <tr>
             <td>
-              <% if @user.image.attached? %>
-              <%= image_tag @user.image, :size =>"80×80" %>
-              <% else %>
-              <%= image_tag 'default-image', :size =>"80x80" %>
-              <% end %><br>
-              <%= link_to @book.user.name, user_path(current_user.id) %>
+              <%= link_to user_path(@user) do %>
+                <%= image_tag @user.get_image(80, 80) %>
+                <br>
+                <%= @book_info.user.name %>
+              <% end %>
             </td>
             <td>
-              <%= link_to @book.title, book_path(@book.id) %>
+              <%= link_to @book_info.title, book_path(@book_info.id) %>
             </td>
             <td>
-              <%= @book.body %>
+              <%= @book_info.body %>
             </td>
             <td>
-            <% if @book.user == current_user %>
-              <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %>
+            <% if @book_info.user == current_user %>
+              <%= link_to "Edit", edit_book_path(@book_info.id), class: "btn btn-sm btn-success" %>
             </td>
             <td>
-              <%= link_to "Destroy", book_path(@book.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか？" %>
+              <%= link_to "Destroy", book_path(@book_info.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか？" %>
             <% end %>
             </td>
           </tr>
